@@ -1,0 +1,820 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEFL ITP - Full Exam Bank (Modular)</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f5f6fa; color: #333; margin: 0; padding: 20px; }
+        .exam-container { max-width: 1100px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        
+        /* Master Tab Navigation */
+        .master-tabs { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #ecf0f1; padding-bottom: 15px; flex-wrap: wrap; justify-content: center; }
+        .master-tab-btn { background: #7f8c8d; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; color: white; font-size: 14px; transition: background 0.3s; }
+        .master-tab-btn.active { background: #2c3e50; }
+
+        .section-module { display: none; }
+        .section-module.active { display: block; }
+
+        /* Shared / General Styles */
+        .main-title { text-align: center; color: #2c3e50; font-size: 28px; font-weight: bold; margin-bottom: 25px; }
+        .context-banner { background: #e8f8f5; border-left: 5px solid #27ae60; padding: 15px; border-radius: 4px; margin-bottom: 20px; font-size: 14px; line-height: 1.5; color: #1e8449; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; margin-bottom: 20px; }
+        .header-top h3 { margin: 0; color: #2c3e50; font-size: 16px; text-transform: uppercase; }
+        .nav-buttons { display: flex; gap: 5px; flex-wrap: wrap; max-height: 80px; overflow-y: auto; }
+        .nav-btn { background: #bdc3c7; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; color: white; font-size: 12px; }
+        .nav-btn.active { background: #2980b9; }
+        .content-area { border: 1px solid #dcdde1; padding: 25px; border-radius: 6px; line-height: 1.6; background: #fafafa; min-height: 200px; margin-bottom: 20px; }
+        .content-area ul { margin-top: 10px; padding-left: 20px; }
+        .content-area li { margin-bottom: 8px; }
+        
+        /* Speaking specific */
+        .timer-box { display: flex; justify-content: center; gap: 40px; margin: 20px 0; background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #e1e1e1; }
+        .timer { font-weight: bold; color: #e67e22; font-size: 22px; }
+        .btn-panel { text-align: center; margin-top: 15px; }
+        .btn { padding: 10px 25px; border: none; cursor: pointer; border-radius: 5px; background: #2980b9; color: white; font-weight: bold; margin: 5px; }
+        .feedback-area { margin-top: 20px; padding: 20px; background: #f0f7f4; border-left: 5px solid #27ae60; display: none; }
+
+        /* Listening specific */
+        .question-text { font-size: 17px; font-weight: bold; color: #2c3e50; margin-bottom: 12px; }
+        .options-list { list-style-type: none; padding: 0; margin: 0; }
+        .options-list li { background: #ffffff; border: 1px solid #dcdde1; padding: 10px 14px; margin-bottom: 6px; border-radius: 4px; font-size: 14px; }
+        .options-list li.correct { background: #e8f8f5; border-color: #27ae60; color: #27ae60; font-weight: bold; }
+        .memo-box { background: #eaf2f8; border-left: 5px solid #2980b9; padding: 12px; border-radius: 4px; margin-top: 15px; font-size: 13px; }
+        .memo-box h4 { margin: 0 0 4px 0; color: #2980b9; font-size: 14px; }
+
+        /* Grammar specific */
+        .score-board { text-align: center; background: #e8f4f8; padding: 10px; border-radius: 6px; margin-bottom: 20px; font-weight: bold; color: #2980b9; }
+        .grammar-card { background: #fff; border: 1px solid #dcdde1; border-radius: 6px; padding: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="exam-container">
+    
+    <!-- MASTER TAB NAVIGATION -->
+    <div class="master-tabs">
+        <button class="master-tab-btn active" onclick="switchSection('speaking')">Speaking Section</button>
+        <button class="master-tab-btn" onclick="switchSection('listening')">Listening Bank</button>
+        <button class="master-tab-btn" onclick="switchSection('grammar')">Grammar Section (9 Qs)</button>
+    </div>
+
+    <!-- ================= SECTION 1: SPEAKING ================= -->
+    <div id="module-speaking" class="section-module active">
+        <div class="main-title">TOEFL ITP - Speaking Section</div>
+
+        <div class="header-top">
+            <h3 id="speaking-question-header">SPEAKING - Question 1 of 4</h3>
+            <div class="nav-buttons" id="speaking-nav-container">
+                <button class="nav-btn active" onclick="loadSpeaking(0)">1</button>
+                <button class="nav-btn" onclick="loadSpeaking(1)">2</button>
+                <button class="nav-btn" onclick="loadSpeaking(2)">3</button>
+                <button class="nav-btn" onclick="loadSpeaking(3)">4</button>
+            </div>
+        </div>
+
+        <div class="content-area" id="speaking-question-content"></div>
+
+        <div class="timer-box">
+            <div>Step 1: Prep Time <div id="prep-timer" class="timer">00:00</div></div>
+            <div>Step 2: Recording Time <div id="rec-timer" class="timer">00:45</div></div>
+        </div>
+
+        <div class="btn-panel">
+            <button class="btn" onclick="startFlow()">Start Practice Timer</button>
+            <button class="btn" onclick="showFeedback()" style="background: #27ae60;">View Suggested Response</button>
+        </div>
+
+        <div id="feedback" class="feedback-area"></div>
+    </div>
+
+    <!-- ================= SECTION 2: LISTENING ================= -->
+    <div id="module-listening" class="section-module">
+        <div class="main-title">TOEFL ITP - Listening Practice & Memory Bank</div>
+        
+        <div class="context-banner">
+            <strong>Contexto del Bloque:</strong> Banco completo y compilado de preguntas de conferencias, conversaciones largas y cortas del TOEFL ITP. Diseñado bajo estrategia de memorización para asegurar la máxima efectividad en el examen real.
+        </div>
+
+        <div class="header-top">
+            <h3 id="listening-question-header">LISTENING - Question 1</h3>
+            <div class="nav-buttons" id="listening-nav-container"></div>
+        </div>
+
+        <div class="content-area" id="listening-question-content"></div>
+
+        <div class="btn-panel">
+            <button class="btn" onclick="prevListening()">Previous</button>
+            <button class="btn" onclick="nextListening()">Next Question</button>
+        </div>
+    </div>
+
+    <!-- ================= SECTION 3: GRAMMAR (MODULAR 9 Qs) ================= -->
+    <div id="module-grammar" class="section-module">
+        <div class="main-title">TOEFL ITP - Grammar Section (9 Questions)</div>
+        
+        <div class="score-board" id="grammar-score-board">
+            Score: 0 / 9 Correct
+        </div>
+
+        <div class="header-top">
+            <h3 id="grammar-header-title">STRUCTURE AND WRITTEN EXPRESSION - Question 1 of 9</h3>
+            <div class="nav-buttons" id="grammar-nav-container"></div>
+        </div>
+
+        <div class="grammar-card">
+            <div class="content-area" id="grammar-content-area" style="min-height: 150px; background: #fff; margin-bottom: 15px;">
+                <!-- Dinámico vía JS por módulos -->
+            </div>
+            
+            <div id="grammar-feedback-box" style="margin-top: 12px; font-size: 1em; font-weight: bold; padding: 10px; border-radius: 4px; display: none;"></div>
+
+            <div class="btn-panel" style="margin-top: 20px;">
+                <button class="btn" onclick="prevGrammar()">Previous Question</button>
+                <button class="btn" onclick="nextGrammar()">Next Question</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    /* ================= MASTER TAB SWITCHER ================= */
+    function switchSection(sectionId) {
+        document.querySelectorAll('.section-module').forEach(mod => mod.classList.remove('active'));
+        document.querySelectorAll('.master-tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById('module-' + sectionId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    /* ================= MODULO 1: SPEAKING ================= */
+    const speakingQuestions = [
+        {
+            title: "SPEAKING - Question 1 of 4",
+            content: `<strong>Listen to an announcement. You may read along as you listen. Then read the announcement aloud.</strong><br><br>
+                      <div style="border: 1px solid #ccc; padding: 15px; background: #fff; border-radius: 4px;">
+                      <em>"Attention all students, faculty, and staff! The University Bookstore is having its annual Spring Sale. Now through the end of April, you can save up to 50 percent on our entire stock of items, including books, school supplies, and university apparel. Need a new book to read during Spring Break? Looking for gifts for your friends or family? Now is the perfect time to shop and save. We have everything from fiction books to university sweaters on sale. Don’t miss these amazing deals! They only come around once a year. Visit us at the bookstore in the Student Center, open daily until 8 P.M. Remember, these discounts are only available for a short time, so come by soon and save big! Happy shopping, and we'll see you at the bookstore!"</em>
+                      </div>`,
+            feedback: `<h3>Suggested Approach & High-Level Delivery:</h3>
+                       <p>Focus on clear pronunciation, proper pausing at punctuation marks, and natural intonation. Emphasize key terms like <strong>up to 50 percent</strong>, <strong>Spring Break</strong>, and <strong>Student Center</strong>.</p>
+                       <p><strong>Pro-tip:</strong> Do not rush; maintain a steady and confident speaking pace throughout your reading.</p>`
+        },
+        {
+            title: "SPEAKING - Question 2 of 4",
+            content: `<strong>Task:</strong> Many people believe it is important for children to participate in group activities such as sports and clubs. Describe at least one skill that children can learn from group activities, and explain why that skill is important. Use details and examples in your response.`,
+            feedback: `<h3>Suggested High-Level Response (1 Minute):</h3>
+                       <p>"<strong>In my two cents</strong>, participating in group activities teaches children essential teamwork skills. For instance, when kids play team sports, they learn how to <strong>work hand in hand</strong> with others towards a common goal. This is crucial because it helps them <strong>build up</strong> their communication skills and social intelligence from an early age, preventing them from becoming isolated. Ultimately, group activities help children <strong>adapt to</strong> different social environments successfully."</p>
+                       <p><strong>Idioms/Phrasal Verbs:</strong> <em>Work hand in hand</em> (collaborate closely), <em>Build up</em> (develop progressively), <em>Adapt to</em> (adjust to new conditions).</p>`
+        },
+        {
+            title: "SPEAKING - Question 3 of 4",
+            content: `<strong>Scenario:</strong> A student has a major research paper due tomorrow morning, but he also has front-row tickets for a concert tonight. He believes he can go for a few hours and then finish the paper.<br><br>
+                      <strong>The friend's perspective:</strong> The girl warns him not to risk his grade, suggests giving away the tickets, and insists he stay in to focus.<br><br>
+                      <strong>Task: State the problem, the girl's solution, and your recommendation.</strong>`,
+            feedback: `<h3>Suggested High-Level Response (1 Minute):</h3>
+                       <p>"In the conversation, the students discuss a dilemma where a student wants to attend a concert despite having a major research paper due tomorrow. The girl advises him to give away his tickets and stay home to focus on his studies. <strong>In my two cents</strong>, I completely agree with her; the student must <strong>hit the books</strong> and skip the event. If he tries to do both, he will <strong>burn the candle at both ends</strong> and get a poor grade. He needs to <strong>get his priorities straight</strong>."</p>
+                       <p><strong>Idioms/Phrasal Verbs:</strong> <em>Hit the books</em> (study hard), <em>Burn the candle at both ends</em> (overwork without rest), <em>Get priorities straight</em> (focus on what matters most).</p>`
+        },
+        {
+            title: "SPEAKING - Question 4 of 4",
+            content: `<strong>Task:</strong> Which of the following qualities do you think is most important for a strong friendship?<br>
+                      <ul>
+                          <li>Loyalty</li>
+                          <li>Honesty</li>
+                          <li>A sense of humor</li>
+                      </ul>
+                      Choose ONE quality. Use details and examples to explain why it is important.`,
+            feedback: `<h3>Suggested High-Level Response (1 Minute):</h3>
+                       <p>"<strong>From my perspective</strong>, honesty is the absolute foundation of any strong friendship. Without it, relationships tend to <strong>fall apart</strong> over misunderstandings. For example, true friends must be willing to tell the truth even when it's difficult, rather than hiding things to avoid conflict. Honest friends help you <strong>stay on track</strong> and grow as a person. Therefore, honesty is much more valuable than humor or temporary loyalty."</p>
+                       <p><strong>Idioms/Phrasal Verbs:</strong> <em>Fall apart</em> (deteriorate completely), <em>Stay on track</em> (remain focused on the right path).</p>`
+        }
+    ];
+
+    let currentSpeaking = 0;
+
+    function loadSpeaking(index) {
+        currentSpeaking = index;
+        document.getElementById('speaking-question-header').innerText = speakingQuestions[index].title;
+        document.getElementById('speaking-question-content').innerHTML = speakingQuestions[index].content;
+        document.getElementById('feedback').innerHTML = speakingQuestions[index].feedback;
+        document.getElementById('feedback').style.display = 'none';
+        
+        if(index === 0) {
+            document.getElementById('prep-timer').innerText = "00:00";
+            document.getElementById('rec-timer').innerText = "00:45";
+        } else {
+            document.getElementById('prep-timer').innerText = "00:30";
+            document.getElementById('rec-timer').innerText = "01:00";
+        }
+
+        const buttons = document.querySelectorAll('#module-speaking .nav-btn');
+        buttons.forEach((btn, i) => {
+            if(i === index) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    }
+
+    function startFlow() {
+        let p = (currentSpeaking === 0) ? 0 : 30; 
+        let r = (currentSpeaking === 0) ? 45 : 60;
+        
+        document.getElementById('prep-timer').innerText = "00:" + (p < 10 ? "0" + p : p);
+        
+        let pInt = setInterval(() => {
+            p--; 
+            if(p >= 0) {
+                document.getElementById('prep-timer').innerText = "00:" + (p < 10 ? "0" + p : p);
+            }
+            if(p <= 0) { 
+                clearInterval(pInt); 
+                startRec(r); 
+            }
+        }, 1000);
+    }
+
+    function startRec(r) {
+        let rInt = setInterval(() => {
+            r--; 
+            document.getElementById('rec-timer').innerText = (r < 10 ? "00:0" + r : "00:" + r);
+            if(r <= 0) clearInterval(rInt);
+        }, 1000);
+    }
+
+    function showFeedback() {
+        document.getElementById('feedback').style.display = 'block';
+    }
+
+
+    /* ================= MODULO 2: LISTENING ================= */
+    const listeningData = [
+        {
+            q: "What does the professor mainly discuss?",
+            options: [
+                "A) An early skyscraper in New York City",
+                "B) The tallest building in Chicago",
+                "C) How skyscrapers are built",
+                "D) How public opinion affects a skyscraper's design"
+            ],
+            correct: 3,
+            tip: "Conferencia de Arquitectura: Cómo la opinión pública afecta el diseño de los rascacielos."
+        },
+        {
+            q: "What was a major concern in designing the Flatiron Building?",
+            options: [
+                "A) Appealing to the public",
+                "B) Preserving the traditional look of the area",
+                "C) Creating the maximum possible office space",
+                "D) Taking advantage of the area's geology"
+            ],
+            correct: 2,
+            tip: "Conferencia Flatiron: Crear el máximo espacio de oficinas posible."
+        },
+        {
+            q: "What was unique about the Flatiron Building?",
+            options: [
+                "A) It was the tallest building in New York City.",
+                "B) It was at the northern tip of Manhattan.",
+                "C) It had a triangular shape.",
+                "D) It was built from a special type of rock."
+            ],
+            correct: 2,
+            tip: "Conferencia Flatiron: Tenía una forma triangular distintiva."
+        },
+        {
+            q: "According to the professor, what was the advantage of building skyscrapers in the southern part of Manhattan?",
+            options: [
+                "A) Buildings there could be seen from across the harbor.",
+                "B) The bedrock there served as a natural foundation.",
+                "C) Iron could easily be obtained there.",
+                "D) The land there was not expensive."
+            ],
+            correct: 1,
+            tip: "Conferencia Rascacielos: La roca madre (bedrock) servía como cimentación natural."
+        },
+        {
+            q: "What is the purpose of the lecture about starlings?",
+            options: [
+                "A) To identify various threats to the starling",
+                "B) To explain a disadvantage of natural selection",
+                "C) To describe how scientists perform field research",
+                "D) To illustrate the concept of an adaptive trait"
+            ],
+            correct: 3,
+            tip: "Conferencia de Biología: Ilustrar el concepto de un rasgo adaptativo."
+        },
+        {
+            q: "According to the professor, what do starlings use to decorate their nests?",
+            options: [
+                "A) Pieces of plants",
+                "B) Bits of plastic",
+                "C) Hair and feathers",
+                "D) Empty eggshells"
+            ],
+            correct: 0,
+            tip: "Conferencia de Estorninos: Usan trozos de plantas (como zanahoria silvestre)."
+        },
+        {
+            q: "What does the professor say about mites?",
+            options: [
+                "A) They are not harmful to birds.",
+                "B) They feed on wild carrot.",
+                "C) They are affected by certain chemicals in plants.",
+                "D) Their small size makes them difficult to count."
+            ],
+            correct: 2,
+            tip: "Conferencia de Estorninos: Los ácaros se ven afectados por ciertos químicos en las plantas."
+        },
+        {
+            q: "In the experiment the professor describes, what did researchers do with some of the artificial starling nests?",
+            options: [
+                "A) They added mites to the nests.",
+                "B) They removed some of the starlings' eggs.",
+                "C) They inserted wild carrot into the nests.",
+                "D) They placed the nests on low tree branches."
+            ],
+            correct: 2,
+            tip: "Experimento: Insertaron zanahoria silvestre en los nidos artificiales."
+        },
+        {
+            q: "What did the researchers conclude based on their experiment?",
+            options: [
+                "A) Starlings can quickly learn new behaviors.",
+                "B) The nest-decorating trait has helped starlings survive.",
+                "C) The reasons for nest decorating by starlings are still unclear.",
+                "D) Wild carrot plants are an important part of starling chicks' diets."
+            ],
+            correct: 1,
+            tip: "Conclusión: El rasgo de decorar nidos ha ayudado a los estorninos a sobrevivir."
+        },
+        {
+            q: "What is the talk on street literature mainly about?",
+            options: [
+                "A) The influence of street literature on classical literature",
+                "B) The characteristics of street literature",
+                "C) Reasons why street literature eventually disappeared",
+                "D) The impact of street literature on English society"
+            ],
+            correct: 3,
+            tip: "Conferencia de Literatura Callejera: Su impacto en la sociedad inglesa."
+        },
+        {
+            q: "What does the professor imply about the process of making ivory flutes in prehistoric times?",
+            options: [
+                "A) It was only done for important events.",
+                "B) It influenced the way people made flutes from bird bones.",
+                "C) It was more complicated than making flutes from bird bones.",
+                "D) It varied from region to region."
+            ],
+            correct: 2,
+            tip: "Arqueología: Era más complicado que hacer flautas con huesos de aves."
+        },
+        {
+            q: "What does the professor say about the thin lines found on the bone flute?",
+            options: [
+                "A) They increased the volume produced by the flute.",
+                "B) They showed that the bones had been damaged.",
+                "C) They were created by climate conditions inside the cave.",
+                "D) They indicated the position of the finger holes."
+            ],
+            correct: 3,
+            tip: "Arqueología: Indicaban la posición de los agujeros para los dedos."
+        },
+        {
+            q: "What does the professor say she will e-mail to the student?",
+            options: [
+                "A) A recording of the flute sound",
+                "B) A photograph of a prehistoric flute",
+                "C) An article written by an archaeologist",
+                "D) A reconstruction of a flute's missing piece"
+            ],
+            correct: 3,
+            tip: "Diálogo Académico: Una reconstrucción de la pieza faltante de la flauta."
+        },
+        {
+            q: "What does the man say about the chapters in his book?",
+            options: [
+                "A) They are easier to understand than the exercises.",
+                "B) They are unusually long.",
+                "C) They represent the subject matter too abstractly.",
+                "D) They are helpful in answering the questions from previous chapters."
+            ],
+            correct: 0,
+            tip: "Diálogo: Son más fáciles de entender que los ejercicios."
+        },
+        {
+            q: "What is the woman's opinion of abstract algebra?",
+            options: [
+                "A) It is more interesting than organic chemistry.",
+                "B) It is easy to understand.",
+                "C) It is boring.",
+                "D) It is unimportant."
+            ],
+            correct: 0,
+            tip: "Conversación: Es más interesante que la química orgánica."
+        },
+        {
+            q: "Why did the man miss dinner?",
+            options: [
+                "A) He was looking for a book.",
+                "B) He was concentrating on his homework.",
+                "C) He forgot what time the dining hall closes.",
+                "D) He was waiting for the woman."
+            ],
+            correct: 1,
+            tip: "Conversación: Estaba concentrado en su tarea."
+        },
+        {
+            q: "What is the conversation mainly about?",
+            options: [
+                "A) A book the speakers are both reading",
+                "B) The basic concepts of abstract algebra",
+                "C) Why the woman likes organic chemistry",
+                "D) Why the man finds his book interesting"
+            ],
+            correct: 1,
+            tip: "Conversación: Los conceptos básicos de álgebra abstracta."
+        },
+        {
+            q: "What does the woman imply about the seminar?",
+            options: [
+                "A) She found the seminar uninformative.",
+                "B) She was unable to hear the speaker at the seminar.",
+                "C) She was glad that she went to the seminar.",
+                "D) She discussed the seminar topic with the presenter."
+            ],
+            correct: 0,
+            tip: "Conversación: Consideró que el seminario no aportó información útil."
+        },
+        {
+            q: "What can be inferred about the man?",
+            options: [
+                "A) He wants to grow a beard.",
+                "B) He usually goes to sleep late.",
+                "C) He did not shave this morning.",
+                "D) He did not get to class on time today."
+            ],
+            correct: 3,
+            tip: "Conversación: No llegó a tiempo a clase hoy."
+        },
+        {
+            q: "What will the man probably do?",
+            options: [
+                "A) Read the woman's letter",
+                "B) Visit Jeff in Alaska",
+                "C) Write to Jeff",
+                "D) Mail a letter for the woman"
+            ],
+            correct: 2,
+            tip: "Conversación: Escribirle a Jeff."
+        }
+    ];
+
+    let currentListening = 0;
+
+    function initListeningNav() {
+        const navContainer = document.getElementById('listening-nav-container');
+        navContainer.innerHTML = '';
+        listeningData.forEach((_, idx) => {
+            const btn = document.createElement('button');
+            btn.className = `nav-btn ${idx === 0 ? 'active' : ''}`;
+            btn.innerText = idx + 1;
+            btn.onclick = () => loadListening(idx);
+            navContainer.appendChild(btn);
+        });
+    }
+
+    function loadListening(index) {
+        currentListening = index;
+        const item = listeningData[index];
+        
+        document.getElementById('listening-question-header').innerText = `LISTENING - Question ${index + 1} of ${listeningData.length}`;
+        
+        let htmlOptions = '<ul class="options-list">';
+        item.options.forEach((opt, oIdx) => {
+            const isCorrectClass = (oIdx === item.correct) ? 'correct' : '';
+            htmlOptions += `<li class="${isCorrectClass}">${opt} ${(oIdx === item.correct) ? '✓ (Correct Answer)' : ''}</li>`;
+        });
+        htmlOptions += '</ul>';
+
+        document.getElementById('listening-question-content').innerHTML = `
+            <div class="question-text">${item.q}</div>
+            ${htmlOptions}
+            <div class="memo-box">
+                <h4>Estrategia de Memoria:</h4>
+                <p>${item.tip}</p>
+            </div>
+        `;
+
+        const buttons = document.querySelectorAll('#module-listening .nav-btn');
+        buttons.forEach((b, i) => {
+            if(i === index) b.classList.add('active');
+            else b.classList.remove('active');
+        });
+    }
+
+    function nextListening() {
+        if(currentListening < listeningData.length - 1) {
+            loadListening(currentListening + 1);
+        }
+    }
+
+    function prevListening() {
+        if(currentListening > 0) {
+            loadListening(currentListening - 1);
+        }
+    }
+
+
+    /* ================= MODULO 3: GRAMMAR (9 QUESTIONS FULLY MODULAR) ================= */
+    const grammarData = [
+        {
+            text: "Young snakes <span style='text-decoration: underline;'>appear</span> (A) to be fully prepared <span style='text-decoration: underline;'>to take care</span> (B) of <span style='text-decoration: underline;'>itself</span> (C) immediately after <span style='text-decoration: underline;'>hatching</span>. (D)",
+            options: [
+                "A) appear",
+                "B) to take care",
+                "C) itself",
+                "D) hatching"
+            ],
+            correct: "C",
+            explanation: "Error de concordancia pronominal. 'Snakes' es plural, por lo que el pronombre reflexivo correcto debe ser 'themselves' en lugar de 'itself'."
+        },
+        {
+            text: "<span style='text-decoration: underline;'>Woven</span> (A) into textile fabrics, glass fibers <span style='text-decoration: underline;'>make excellent</span> (B) drapery and upholstery materials <span style='text-decoration: underline;'>because of</span> (C) their chemical stability, strength, and <span style='text-decoration: underline;'>resisting</span> (D) to fire and water.",
+            options: [
+                "A) Woven",
+                "B) make excellent",
+                "C) because of",
+                "D) resisting"
+            ],
+            correct: "D",
+            explanation: "Error de categoría gramatical (forma nominal vs participio). Se requiere el sustantivo 'resistance' en lugar del gerundio 'resisting' para mantener el paralelismo con 'stability' y 'strength'."
+        },
+        {
+            text: "In the United States, <span style='text-decoration: underline;'>the</span> (A) attorney general is a cabinet <span style='text-decoration: underline;'>member</span> (B) in charge <span style='text-decoration: underline;'>with</span> (C) the <span style='text-decoration: underline;'>administration</span> (D) of the Department of Justice.",
+            options: [
+                "A) the",
+                "B) member",
+                "C) with",
+                "D) administration"
+            ],
+            correct: "C",
+            explanation: "Error de preposición idiomática. La expresión correcta en inglés es 'in charge of', no 'in charge with'."
+        },
+        {
+            text: "Dry ice is <span style='text-decoration: underline;'>the solid</span> (A) form <span style='text-decoration: underline;'>of</span> (B) carbon dioxide, which <span style='text-decoration: underline;'>vaporize</span> (C) at <span style='text-decoration: underline;'>room temperature</span>. (D)",
+            options: [
+                "A) the solid",
+                "B) of",
+                "C) vaporize",
+                "D) room temperature"
+            ],
+            correct: "C",
+            explanation: "Error de concordancia verbal. El sujeto relativo 'which' se refiere a 'carbon dioxide' (singular), por lo que el verbo debe ser en tercera persona singular: 'vaporizes'."
+        },
+        {
+            text: "The <span style='text-decoration: underline;'>first</span> (A) practical <span style='text-decoration: underline;'>commercial</span> (B) light bulb was <span style='text-decoration: underline;'>produced</span> (C) by Thomas Edison in <span style='text-decoration: underline;'>1879</span>. (D)",
+            options: [
+                "A) first",
+                "B) commercial",
+                "C) produced",
+                "D) 1879"
+            ],
+            correct: "C", // Nota: Esta es una oración correcta de control, o cambiamos el error. Hagamos una con error explícito estilo TOEFL:
+            // Ajustemos la opción C/D para que sea claramente una pregunta de estructura TOEFL ITP real:
+        },
+        {
+            text: "Substance <span style='text-decoration: underline;'>like</span> (A) glass and paper <span style='text-decoration: underline;'>can be</span> (B) recycled <span style='text-decoration: underline;'>to reduce</span> (C) environmental <span style='text-decoration: underline;'>waste</span>. (D)",
+            options: [
+                "A) like",
+                "B) can be",
+                "C) to reduce",
+                "D) waste"
+            ],
+            correct: "A",
+            explanation: "Error de gramática. Para dar ejemplos se debe usar 'such like' o 'such as'. 'Substances' al ser plural debe ir acompañado de 'Substances like' o 'Such substances as'."
+        },
+        {
+            text: "A number of <span style='text-decoration: underline;'>computer</span> (A) programs <span style='text-decoration: underline;'>has been</span> (B) developed <span style='text-decoration: underline;'>to assist</span> (C) accountants in <span style='text-decoration: underline;'>auditing</span>. (D)",
+            options: [
+                "A) computer",
+                "B) has been",
+                "C) to assist",
+                "D) auditing"
+            ],
+            correct: "B",
+            explanation: "Error de concordancia con la expresión 'A number of'. Esta estructura toma un verbo en plural ('have been'), a diferencia de 'The number of', que toma singular."
+        },
+        {
+            text: "The Pacific Ocean <span style='text-decoration: underline;'>contains</span> (A) more <span style='text-decoration: underline;'>than</span> (B) half <span style='text-decoration: underline;'>of</span> (C) world's water. (D)",
+            options: [
+                "A) contains",
+                "B) than",
+                "C) of",
+                "D) world's water"
+            ],
+            correct: "D",
+            explanation: "Error de artículo determinado omitido. Antes del sustantivo singular definido 'world's water' se requiere el artículo definido 'the': 'the world's water'."
+        },
+        {
+            text: "Ancient <span style='text-decoration: underline;'>astronomers</span> (A) tracked <span style='text-decoration: underline;'>celestial</span> (B) bodies to predict <span style='text-decoration: underline;'>season</span> (C) changes and agricultural <span style='text-decoration: underline;'>cycles</span>. (D)",
+            options: [
+                "A) astronomers",
+                "B) celestial",
+                "C) season",
+                "D) cycles"
+            ],
+            correct: "C",
+            explanation: "Error de uso de sustantivo como adjetivo adjunto. Debe usarse el sustantivo modificador en función adjetiva sin pluralizar o en su forma correcta 'seasonal' changes."
+        }
+    ];
+
+    // Ajuste limpio de la pregunta 5 que quedó con marcador neutral:
+    grammarData[4] = {
+        text: "<span>Molecules</span> (A) of carbon <span style='text-decoration: underline;'>dioxide</span> (B) consists of <span style='text-decoration: underline;'>one carbon</span> (C) and two <span style='text-decoration: underline;'>oxygen atoms</span>. (D)",
+        options: [
+            "A) Molecules",
+            "B) dioxide",
+            "C) one carbon",
+            "D) oxygen atoms"
+        ],
+        correct: "B", // (En realidad el error estaría en "consists" -> consist, ajustemos texto para mantener rigor absoluto TOEFL)
+    };
+    // Redefinamos el banco de 9 preguntas de Grammar 100% pulido y funcional:
+    const grammarQuestionsBank = [
+        {
+            text: "Young snakes <span style='text-decoration: underline;'>appear</span> (A) to be fully prepared <span style='text-decoration: underline;'>to take care</span> (B) of <span style='text-decoration: underline;'>itself</span> (C) immediately after <span style='text-decoration: underline;'>hatching</span>. (D)",
+            options: ["A) appear", "B) to take care", "C) itself", "D) hatching"],
+            correct: "C",
+            explanation: "Error de concordancia reflexiva. 'Snakes' es plural, por ende corresponde 'themselves'."
+        },
+        {
+            text: "<span style='text-decoration: underline;'>Woven</span> (A) into textile fabrics, glass fibers <span style='text-decoration: underline;'>make excellent</span> (B) drapery and upholstery materials <span style='text-decoration: underline;'>because of</span> (C) their chemical stability, strength, and <span style='text-decoration: underline;'>resisting</span> (D) to fire and water.",
+            options: ["A) Woven", "B) make excellent", "C) because of", "D) resisting"],
+            correct: "D",
+            explanation: "Se requiere el sustantivo 'resistance' en lugar del gerundio 'resisting' por paralelismo."
+        },
+        {
+            text: "In the United States, <span style='text-decoration: underline;'>the</span> (A) attorney general is a cabinet <span style='text-decoration: underline;'>member</span> (B) in charge <span style='text-decoration: underline;'>with</span> (C) the <span style='text-decoration: underline;'>administration</span> (D) of the Department of Justice.",
+            options: ["A) the", "B) member", "C) with", "D) administration"],
+            correct: "C",
+            explanation: "La preposición correcta para 'in charge' es 'of', no 'with'."
+        },
+        {
+            text: "Dry ice is <span style='text-decoration: underline;'>the solid</span> (A) form <span style='text-decoration: underline;'>of</span> (B) carbon dioxide, which <span style='text-decoration: underline;'>vaporize</span> (C) at <span style='text-decoration: underline;'>room temperature</span>. (D)",
+            options: ["A) the solid", "B) of", "C) vaporize", "D) room temperature"],
+            correct: "C",
+            explanation: "El verbo relativo para 'carbon dioxide' (singular) debe ser 'vaporizes'."
+        },
+        {
+            text: "Molecules of carbon <span style='text-decoration: underline;'>dioxide</span> (A) <span style='text-decoration: underline;'>consists</span> (B) of one carbon atom and <span style='text-decoration: underline;'>two</span> (C) oxygen <span style='text-decoration: underline;'>atoms</span>. (D)",
+            options: ["A) dioxide", "B) consists", "C) two", "D) atoms"],
+            correct: "B",
+            explanation: "El sujeto principal es 'Molecules' (plural), por lo que el verbo debe ser 'consist'."
+        },
+        {
+            text: "Substances <span style='text-decoration: underline;'>like</span> (A) glass and paper <span style='text-decoration: underline;'>can be</span> (B) recycled <span style='text-decoration: underline;'>to reduce</span> (C) environmental <span style='text-decoration: underline;'>waste</span>. (D)",
+            options: ["A) like", "B) can be", "C) to reduce", "D) waste"],
+            correct: "A",
+            explanation: "Uso idiomático: se prefiere 'Such as' en lugar de 'like' para listados formales en exámenes escritos."
+        },
+        {
+            text: "A number of <span style='text-decoration: underline;'>computer</span> (A) programs <span style='text-decoration: underline;'>has been</span> (B) developed <span style='text-decoration: underline;'>to assist</span> (C) accountants in <span style='text-decoration: underline;'>auditing</span>. (D)",
+            options: ["A) computer", "B) has been", "C) to assist", "D) auditing"],
+            correct: "B",
+            explanation: "'A number of' requiere verbo en plural ('have been')."
+        },
+        {
+            text: "The Pacific Ocean <span style='text-decoration: underline;'>contains</span> (A) more <span style='text-decoration: underline;'>than</span> (B) half <span style='text-decoration: underline;'>of</span> (C) world's water. (D)",
+            options: ["A) contains", "B) than", "C) of", "D) world's water"],
+            correct: "D",
+            explanation: "Falta el artículo definido 'the' antes de 'world's water'."
+        },
+        {
+            text: "Ancient <span style='text-decoration: underline;'>astronomers</span> (A) tracked <span style='text-decoration: underline;'>celestial</span> (B) bodies to predict <span style='text-decoration: underline;'>season</span> (C) changes and agricultural <span style='text-decoration: underline;'>cycles</span>. (D)",
+            options: ["A) astronomers", "B) celestial", "C) season", "D) cycles"],
+            correct: "C",
+            explanation: "Se debe usar el adjetivo 'seasonal' en lugar del sustantivo 'season' para modificar a 'changes'."
+        }
+    ];
+
+    let currentGrammar = 0;
+    let grammarScore = 0;
+    let grammarUserAnswers = new Array(grammarQuestionsBank.length).fill(null);
+
+    function initGrammarNav() {
+        const navContainer = document.getElementById('grammar-nav-container');
+        navContainer.innerHTML = '';
+        grammarQuestionsBank.forEach((_, idx) => {
+            const btn = document.createElement('button');
+            btn.className = `nav-btn ${idx === 0 ? 'active' : ''}`;
+            btn.innerText = idx + 1;
+            btn.onclick = () => loadGrammar(idx);
+            navContainer.appendChild(btn);
+        });
+    }
+
+    function loadGrammar(index) {
+        currentGrammar = index;
+        const q = grammarQuestionsBank[index];
+        
+        document.getElementById('grammar-header-title').innerText = `STRUCTURE AND WRITTEN EXPRESSION - Question ${index + 1} of ${grammarQuestionsBank.length}`;
+        
+        let optionsHtml = '<ul class="options-list">';
+        q.options.forEach((opt) => {
+            const optLetter = opt.charAt(0);
+            const isSelected = grammarUserAnswers[index] === optLetter;
+            const selectedStyle = isSelected ? 'background: #e8f4f8; border-color: #2980b9; font-weight: bold;' : '';
+            optionsHtml += `<li style="cursor: pointer; ${selectedStyle}" onclick="checkGrammarOption('${optLetter}')">${opt}</li>`;
+        });
+        optionsHtml += '</ul>';
+
+        document.getElementById('grammar-content-area').innerHTML = `
+        <div style="font-size: 0.85em; color: #7f8c8d; margin-bottom: 5px; font-weight: bold; text-transform: uppercase;">Structure & Written Expression</div>
+        <div style="font-weight: bold; font-size: 1.1em; margin-bottom: 15px; color: #2c3e50;">${index + 1}. ${q.text}</div>
+        ${optionsHtml}
+    `;
+
+    const feedbackBox = document.getElementById('grammar-feedback-box');
+    if(grammarUserAnswers[index] !== null) {
+        showGrammarFeedback(index);
+    } else {
+        feedbackBox.style.display = 'none';
+    }
+
+    const buttons = document.querySelectorAll('#module-grammar .nav-btn');
+    buttons.forEach((b, i) => {
+        if(i === index) b.classList.add('active');
+        else b.classList.remove('active');
+    });
+}
+
+function checkGrammarOption(selectedLetter) {
+    if(grammarUserAnswers[currentGrammar] !== null) return; 
+    
+    grammarUserAnswers[currentGrammar] = selectedLetter;
+    const q = grammarQuestionsBank[currentGrammar];
+    
+    if(selectedLetter === q.correct) {
+        grammarScore++;
+    }
+    
+    document.getElementById('grammar-score-board').innerText = `Score: ${grammarScore} / ${grammarQuestionsBank.length} Correct`;
+    loadGrammar(currentGrammar); 
+}
+
+function showGrammarFeedback(index) {
+    const q = grammarQuestionsBank[index];
+    const userAns = grammarUserAnswers[index];
+    const feedbackBox = document.getElementById('grammar-feedback-box');
+    feedbackBox.style.display = 'block';
+
+    if(userAns === q.correct) {
+        feedbackBox.style.background = '#e8f8f5';
+        feedbackBox.style.borderLeft = '5px solid #27ae60';
+        feedbackBox.style.color = '#27ae60';
+        feedbackBox.innerText = `¡Correcto! ${q.explanation}`;
+    } else {
+        feedbackBox.style.background = '#f9ebea';
+        feedbackBox.style.borderLeft = '5px solid #c0392b';
+        feedbackBox.style.color = '#c0392b';
+        feedbackBox.innerText = `Incorrecto. La opción correcta es la [${q.correct}]. Explicación: ${q.explanation}`;
+    }
+}
+
+function nextGrammar() {
+    if(currentGrammar < grammarQuestionsBank.length - 1) {
+        loadGrammar(currentGrammar + 1);
+    }
+}
+
+function prevGrammar() {
+    if(currentGrammar > 0) {
+        loadGrammar(currentGrammar - 1);
+    }
+}
+
+/* ================= INICIALIZACIÓN GENERAL ================= */
+initListeningNav();
+loadListening(0);
+loadSpeaking(0);
+initGrammarNav();
+loadGrammar(0);
+</script>
+
+<!-- Sección Independiente de Lecturas -->
+<div style="margin-top: 40px; padding: 20px; border: 2px dashed #3498db; border-radius: 8px; background-color: #f7f9fb;">
+    <h3 style="margin-top: 0; color: #2980b9; text-align: center; text-transform: uppercase;">Módulos de Lectura Disponibles</h3>
+    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 15px;">
+        <!-- Botón Lectura 1 -->
+        <button onclick="window.location.href='Toelfitplecturas2.html'" style="padding: 12px 25px; cursor: pointer; background-color: #3498db; color: white; border: none; border-radius: 5px; font-weight: bold; font-size: 14px;">
+            Ir a Lectura 1
+        </button>
+        <!-- Botón Lectura 2 -->
+        <button onclick="window.location.href='toelfitplecturas3.html'" style="padding: 12px 25px; cursor: pointer; background-color: #3498db; color: white; border: none; border-radius: 5px; font-weight: bold; font-size: 14px;">
+            Ir a Lectura 2
+        </button>
+    </div>
+</div>
+</body>
+</html>
