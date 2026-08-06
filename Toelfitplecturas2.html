@@ -1,0 +1,666 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEFL ITP - Full Reading Comprehension (3 Lecturas Reales)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f6fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .exam-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .score-board {
+            text-align: center;
+            background: #e8f4f8;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        .split-layout {
+            display: flex;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .reading-pane {
+            flex: 1;
+            background: #f8f9fa;
+            border: 1px solid #dcdde1;
+            border-left: 4px solid #3498db;
+            border-radius: 6px;
+            padding: 20px;
+            max-height: 550px;
+            overflow-y: auto;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        .reading-content {
+            display: none;
+        }
+        .reading-content.active {
+            display: block;
+        }
+        .question-pane {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #fff;
+            border: 1px solid #dcdde1;
+            border-radius: 6px;
+            padding: 20px;
+        }
+        .question-card {
+            display: none;
+        }
+        .question-card.active {
+            display: block;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.05em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .options-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .options-list li {
+            padding: 10px 14px;
+            margin: 8px 0;
+            background: #f1f2f6;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .options-list li:hover {
+            background: #dfe4ea;
+        }
+        .options-list li.correct {
+            background: #2ed573;
+            color: white;
+            font-weight: bold;
+        }
+        .options-list li.incorrect {
+            background: #ff4757;
+            color: white;
+        }
+        .feedback {
+            margin-top: 12px;
+            font-size: 0.95em;
+            font-weight: bold;
+        }
+        .pagination-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .btn {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 0.95em;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #1f618d;
+        }
+        .btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .section-indicator {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<div class="exam-container">
+    <h1>TOEFL ITP - Reading Comprehension</h1>
+    
+    <div class="score-board" id="score-board">
+        Score: 0 / 30 Correct
+    </div>
+
+    <div class="split-layout">
+        <!-- PANEL IZQUIERDO DE LECTURAS -->
+        <div class="reading-pane" id="reading-display">
+            <!-- Lectura 1 (Preguntas 1-10) -->
+            <div class="reading-content active" id="reading-1">
+                <h3>The Gross Domestic Product (GDP)</h3>
+                <p>Put in the simplest terms, the GDP, or gross domestic product, of a country is the value in money terms of the total amount of final goods and services produced by its economy during a particular period of time. This measure is important for its own sake and because it helps economists and others understand both inflation and unemployment. Governments watch the GDP figures <strong>avidly</strong> because these figures show how prosperous a country is and because they are useful in forecasting the future health of the economy. All in all, it is no exaggeration to say that the gross domestic product is one of the most closely watched numbers in existence.</p>
+                <p>Although the measurement of the GDP may seem <strong>straightforward</strong>, this is by no means the case. First, gross domestic product does not include the values of <em>all</em> the goods and services produced; it includes only the <em>final</em> goods and services produced, those <strong>destined</strong> for the ultimate user. For example, wheat flour purchased for family consumption is a final good, but flour to be used in manufacturing bread commercially is an intermediate good, not a final good. To avoid double counting, the output of intermediate goods must not be included in the GDP.</p>
+                <p>Second, some final goods and services that must be counted in the gross domestic product are not bought and sold in the marketplace, so they are valued at what they cost. Consider the services performed by the civil authorities: police protection, fire protection, the court system, defense, and so forth. Such services are not bought or sold, yet they are an important part of an economy’s final output. Economists and statisticians have decided to value them at what they cost the taxpayers. This is not <strong>ideal</strong>, but it is the best practical solution advanced to date.</p>
+                <p>Third, for practical reasons it is necessary to omit certain types of final output from the gross domestic product, in particular the services of those who work for their families at home. This is not because economists fail to appreciate these services but because it is extremely difficult to get reasonably reliable estimates of their money value.</p>
+            </div>
+
+            <!-- Lectura 2 (Preguntas 11-19) -->
+            <div class="reading-content" id="reading-2">
+                <h3>Historic Preservation and Cultural Patrimony</h3>
+                <p>In the United States, some people wish to preserve old buildings for historical value. Others dislike a newly built environment. During the 1960s, Christopher Tunnard, one of the pioneers of the preservation movement, proposed a more inclusive rationale for preserving the past. He believed it was society's <strong>responsibility</strong> to cultivate what he called the "cultural patrimony."</p>
+                <p>Cultural patrimony means inheritance from one's ancestors. It includes places of historical significance, artistic prominence, social import, or aesthetic value. Thus, society's responsibility is not simply to preserve what we receive from our ancestors and pass it on to future generations. It is to select what is significant, <strong>nurture</strong> and <strong>enhance</strong> it, make improvements, and pass on to the next generation an environment that is richer, more fulfilling, and more beautiful.</p>
+                <p>Preserving old buildings or historic places can provide tremendous benefits to a community. Besides the economic benefits from the tourists it attracts, social benefits from a more heterogeneous population, and cultural benefits from its <strong>enhanced</strong> setting for artistic activity, these benefits often offset the costs of preservation. A good example is the complete 18th-century village of Williamsburg, Virginia.</p>
+                <p>However, there are not enough funds to create a mini-Williamsburg everywhere, nor are there enough tourists to visit <strong>them</strong> or curators to maintain them. Moreover, there is every reason to keep from transforming the North American landscape into one continuous museum. Instead we should find ways to make the cultural patrimony an integral part of daily life. That means <strong>retaining</strong> landmarks without destroying their continuing utility.</p>
+            </div>
+
+            <!-- Lectura 3 REAL (Preguntas 20-30) -->
+            <div class="reading-content" id="reading-3">
+                <h3>Evolution of Avian Egg Coloration</h3>
+                <p>All of the earliest birds' eggs were probably white, but egg color most likely evolved as a way to camouflage (disguise) eggs from predators. There are two facts that support this theory. First, most birds that still lay white eggs build their nests in cavities, burrows, or covered nests. Second, those birds that lay white eggs in open nests either sit on them in order to begin the process immediately after the first egg is laid or cover their eggs to hide them when they must leave the nest. Most ground-nesting species blend their eggs into their surroundings, which means that a speckled or brownish color if the bird is laying its eggs on dead vegetation, a light sandy color if it nests on beaches or deserts, or even black if it builds its nest on ground that has been burned.</p>
+                <p>The family of thrushes is one whose members eggs vary according to nesting site. Ground-nesting thrushes produce brown, gray, or olive-colored eggs. Those that build their nests in the forest produce heavily speckled eggs, while those that nest in the crevices between rocks have speckled, greenish, or plain blue eggs. The thrushes that lay their eggs in holes produce white eggs. One factor that determines matching its eggs to the ground on which they are laid is to <strong>thwart</strong> predators, as seen in the yellow-wattled lapwing. This bird lays its eggs among the locations in which the lapwing lays its colossal region as a coastal region when brick-red-brownish black particles of ironstone are scattered. Only in this area does the lapwing lay red eggs covered with brownish specks.</p>
+                <p>Ornithologists (scientists who study birds) have experimented with egg color to determine its common role. One key factor in protecting the developing chick within from its enemies. In one experiment with black-headed gulls, an equal number of artificial spotted gull eggs, white eggs, and khaki-colored eggs were placed in areas where common black-headed gulls breed. Herring gulls and carrion crows, two of the common black-headed gull's predators, were more likely to take the plain-colored eggs than the spotted ones.</p>
+            </div>
+        </div>
+
+        <!-- PANEL DERECHO DE PREGUNTAS -->
+        <div class="question-pane">
+            <div id="questions-container">
+                
+                <!-- Lectura 1 (1-10) -->
+                <div class="question-card active" data-correct="B">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">1. What does the passage mainly discuss?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) Why governmental policies influence the GDP</li>
+                        <li data-option="B" class="correct-target">B) What economists include in the GDP</li>
+                        <li data-option="C">C) Why GDP statistics are important to consumers</li>
+                        <li data-option="D">D) How the GDP affects goods and services</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="D">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">2. According to the passage, GDP figures are closely watched for all of the following reasons EXCEPT:</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) They suggest how well a country's economy will function in the future.</li>
+                        <li data-option="B">B) They provide important information that affects inflation and unemployment.</li>
+                        <li data-option="C">C) They indicate the value of goods and services a country is importing.</li>
+                        <li data-option="D" class="correct-target">D) They illustrate how successful a country's economy has been.</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="A">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">3. The word "straightforward" is closest in meaning to:</div>
+                    <ul class="options-list">
+                        <li data-option="A" class="correct-target">A) clear-cut</li>
+                        <li data-option="B">B) traditional</li>
+                        <li data-option="C">C) helpful</li>
+                        <li data-option="D">D) inclusive</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="D">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">4. The word "destined" is closest in meaning to:</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) included</li>
+                        <li data-option="B">B) purchased</li>
+                        <li data-option="C">C) imported</li>
+                        <li data-option="D" class="correct-target">D) intended</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="C">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">5. Why does the author mention flour and bread in the second paragraph?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) To provide an example of the kinds of goods and services people usually buy</li>
+                        <li data-option="B">B) To compare goods that are produced with services that are provided</li>
+                        <li data-option="C" class="correct-target">C) To explain the distinction between intermediate goods and final goods</li>
+                        <li data-option="D">D) To show that families consume large quantities of certain goods</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="B">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">6. Why must the output of intermediate goods be omitted from the GDP?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) To increase the overall value of the GDP</li>
+                        <li data-option="B" class="correct-target">B) To avoid double counting</li>
+                        <li data-option="C">C) Because they are not produced by the economy</li>
+                        <li data-option="D">D) Because their money value cannot be estimated</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="C">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">7. The author mentions all of the following as examples of services performed by civil authorities EXCEPT:</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) police protection</li>
+                        <li data-option="B">B) the court system</li>
+                        <li data-option="C" class="correct-target">C) family housework</li>
+                        <li data-option="D">D) defense</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="B">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">8. The word "ideal" is closest in meaning to:</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) abstract</li>
+                        <li data-option="B" class="correct-target">B) adequate</li>
+                        <li data-option="C">C) typical</li>
+                        <li data-option="D">D) perfect</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="B">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">9. According to the fourth paragraph, why are the services of those who work for their families in the home not included in the GDP?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) Economists do not always appreciate the importance of these people's work.</li>
+                        <li data-option="B" class="correct-target">B) Economists cannot calculate the financial worth of these people's work accurately.</li>
+                        <li data-option="C">C) Families do not normally tell economists what these people are paid.</li>
+                        <li data-option="D">D) Families cannot usually afford to lose the services of these people.</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="D">
+                    <div class="section-indicator">Questions 1-10 (Reading 1)</div>
+                    <div class="question-title">10. Where in the passage does the author explain why certain final outputs, such as housework, are omitted from the GDP?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) Paragraph 1</li>
+                        <li data-option="B">B) Paragraph 2</li>
+                        <li data-option="C">C) Paragraph 3</li>
+                        <li data-option="D" class="correct-target">D) Paragraph 4</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <!-- Lectura 2 (11-19) -->
+                <div class="question-card" data-correct="C">
+                    <div class="section-indicator">Questions 11-19 (Reading 2)</div>
+                    <div class="question-title">11. What does the passage mainly discuss?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) The role of tourism in the preservation of historic places</li>
+                        <li data-option="B">B) The preservation of historic Williamsburg</li>
+                        <li data-option="C" class="correct-target">C) The benefits of preserving historic buildings and places</li>
+                        <li data-option="D">D) The cost of preserving historic places</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="A">
+                    <div class="section-indicator">Questions 11-19 (Reading 2)</div>
+                    <div class="question-title">12. The word "responsibility" is closest in meaning to:</div>
+                    <ul class="options-list">
+                        <li data-option="A" class="correct-target">A) duty</li>
+                        <li data-option="B">B) dispute</li>
+                        <li data-option="C">C) opinion</li>
+                        <li data-option="D">D) goal</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="B">
+                    <div class="section-indicator">Questions 11-19 (Reading 2)</div>
+                    <div class="question-title">13. Based on information in the passage, all of the following could be considered sites of cultural patrimony EXCEPT:</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) the site of a famous battle</li>
+                        <li data-option="B" class="correct-target">B) the place where a successful modern industry manufactures its goods</li>
+                        <li data-option="C">C) the birthplace of an important United States president</li>
+                        <li data-option="D">D) the house where a well-known artist spent her childhood</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="C">
+                    <div class="section-indicator">Questions 11-19 (Reading 2)</div>
+                    <div class="question-title">14. The word "nurture" is closest in meaning to:</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) remove</li>
+                        <li data-option="B">B) describe</li>
+                        <li data-option="C" class="correct-target">C) promote</li>
+                        <li data-option="D">D) decorate</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="D">
+                    <div class="section-indicator">Questions 11-19 (Reading 2)</div>
+                    <div class="question-title">15. Which of the following is NOT mentioned in the passage as a benefit that a city can receive from preserving its past?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) Income from visitors</li>
+                        <li data-option="B">B) New funds to renovate other sites</li>
+                        <li data-option="C">C) A more culturally diverse population</li>
+                        <li data-option="D" class="correct-target">D) The construction of new buildings to replace old ones</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="B">
+                    <div class="section-indicator">Questions 11-19 (Reading 2)</div>
+                    <div class="question-title">16. The word "enhanced" is closest in meaning to:</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) permanent</li>
+                        <li data-option="B" class="correct-target">B) improved</li>
+                        <li data-option="C">C) cultural</li>
+                        <li data-option="D">D) peaceful</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="A">
+                    <div class="section-indicator">Questions 11-19 (Reading 2)</div>
+                    <div class="question-title">17. In the third paragraph, Williamsburg is mentioned as an example of:</div>
+                    <ul class="options-list">
+                        <li data-option="A" class="correct-target">A) how money from tourism can pay for preservation costs</li>
+                        <li data-option="B">B) why preservation projects need to be privately financed</li>
+                        <li data-option="C">C) how expensive it is to preserve historic buildings</li>
+                        <li data-option="D">D) why historically preserved buildings should be operated as museums</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="B">
+                    <div class="section-indicator">Questions 11-19 (Reading 2)</div>
+                    <div class="question-title">18. The word "them" refers to:</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) funds</li>
+                        <li data-option="B" class="correct-target">B) properties</li>
+                        <li data-option="C">C) tourists</li>
+                        <li data-option="D">D) curators</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="A">
+                    <div class="section-indicator">Questions 11-19 (Reading 2)</div>
+                    <div class="question-title">19. The word "retaining" is closest in meaning to:</div>
+                    <ul class="options-list">
+                        <li data-option="A" class="correct-target">A) keeping</li>
+                        <li data-option="B">B) allowing</li>
+                        <li data-option="C">C) identifying</li>
+                        <li data-option="D">D) visiting</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <!-- Lectura 3 REAL (20-30) -->
+                <div class="question-card" data-correct="B">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">20. What is the primary theory proposed regarding the evolution of egg color in birds?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) It evolved to regulate egg temperature.</li>
+                        <li data-option="B" class="correct-target">B) It evolved as a mechanism for camouflage from predators.</li>
+                        <li data-option="C">C) It evolved to help birds identify their own nests.</li>
+                        <li data-option="D">D) It evolved due to dietary changes in prehistoric birds.</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="C">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">21. According to the passage, why is color advantageous for eggs laid in open nests?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) It attracts parental care.</li>
+                        <li data-option="B">B) It prevents egg confusion.</li>
+                        <li data-option="C" class="correct-target">C) It provides camouflage against predators.</li>
+                        <li data-option="D">D) It absorbs sunlight faster.</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="A">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">22. What characteristic is shared by birds that still lay white eggs?</div>
+                    <ul class="options-list">
+                        <li data-option="A" class="correct-target">A) They build nests in cavities, burrows, or covered areas.</li>
+                        <li data-option="B">B) They only nest on open beaches.</li>
+                        <li data-option="C">C) They migrate long distances annually.</li>
+                        <li data-option="D">D) They lay eggs exclusively on burned vegetation.</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="D">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">23. How do birds laying white eggs in open nests protect them when leaving?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) They roll them into dark crevices.</li>
+                        <li data-option="B">B) They paint them with mud.</li>
+                        <li data-option="C">C) They abandon them immediately.</li>
+                        <li data-option="D" class="correct-target">D) They cover their eggs to hide them.</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="A">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">24. What does the author suggest about the relationship between nest type and egg color?</div>
+                    <ul class="options-list">
+                        <li data-option="A" class="correct-target">A) Nest type dictates the necessary level of egg concealment.</li>
+                        <li data-option="B">B) Nest type has no influence on egg appearance.</li>
+                        <li data-option="C">C) Open nests require bright white eggs.</li>
+                        <li data-option="D">D) Burrow nests always produce spotted eggs.</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="D">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">25. The word "thwart" in the second paragraph is closest in meaning to:</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) assist</li>
+                        <li data-option="B">B) observe</li>
+                        <li data-option="C">C) encourage</li>
+                        <li data-option="D" class="correct-target">D) prevent</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="C">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">26. According to the text, what is one challenge faced by ground-nesting birds?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) They cannot find suitable ironstone particles.</li>
+                        <li data-option="B">B) They must balance nest visibility with parental monitoring.</li>
+                        <li data-option="C" class="correct-target">C) Their eggs are highly exposed to predators if not camouflaged.</li>
+                        <li data-option="D">D) They lay eggs exclusively in dark cavities.</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="B">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">27. What type of eggs do thrushes that build nests in rock crevices produce?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) Pure white eggs only</li>
+                        <li data-option="B" class="correct-target">B) Speckled, greenish, or plain blue eggs</li>
+                        <li data-option="C">C) Dark black eggs</li>
+                        <li data-option="D">D) Red eggs with specks</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="C">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">28. What unique coloration feature is described for the yellow-wattled lapwing?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) Plain white eggs in open fields</li>
+                        <li data-option="B">B">B) Greenish eggs matching forest moss</li>
+                        <li data-option="C" class="correct-target">C) Red eggs with brownish specks near ironstone particles</li>
+                        <li data-option="D">D) Black eggs laid in sand dunes</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="A">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">29. What did the experiment with black-headed gulls demonstrate?</div>
+                    <ul class="options-list">
+                        <li data-option="A" class="correct-target">A) Predators took plain-colored eggs more frequently than spotted ones.</li>
+                        <li data-option="B">B) Predators completely ignored white eggs.</li>
+                        <li data-option="C">C) Khaki-colored eggs were eaten first by crows.</li>
+                        <li data-option="D">D) Spotted eggs attracted more herring gulls.</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+                <div class="question-card" data-correct="D">
+                    <div class="section-indicator">Questions 20-30 (Reading 3)</div>
+                    <div class="question-title">30. Who are cited as common predators of the black-headed gull in the study?</div>
+                    <ul class="options-list">
+                        <li data-option="A">A) Yellow-wattled lapwings</li>
+                        <li data-option="B">B) Ground-nesting thrushes</li>
+                        <li data-option="C">C) Desert falcons</li>
+                        <li data-option="D" class="correct-target">D) Herring gulls and carrion crows</li>
+                    </ul>
+                    <div class="feedback"></div>
+                </div>
+
+            </div>
+
+            <!-- CONTROLES DE PAGINACIÓN -->
+            <div class="pagination-controls">
+                <button class="btn" id="prev-btn" disabled>Back</button>
+                <span id="page-indicator" style="align-self: center; font-weight: bold; font-size: 0.9em;">Question 1 of 30</span>
+                <button class="btn" id="next-btn">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const cards = document.querySelectorAll('.question-card');
+    const readingContents = document.querySelectorAll('.reading-content');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const pageIndicator = document.getElementById('page-indicator');
+    const scoreBoard = document.getElementById('score-board');
+
+    let currentIndex = 0;
+    let score = 0;
+    const answeredStatus = new Array(cards.length).fill(false);
+
+    function updateExamView() {
+        cards.forEach((card, index) => {
+            card.classList.toggle('active', index === currentIndex);
+        });
+
+        // Cambio dinámico de lectura según el número de pregunta:
+        // Q1-10 -> Lectura 1
+        // Q11-19 -> Lectura 2
+        // Q20-30 -> Lectura 3 (Aves y Huevos)
+        readingContents.forEach((content) => {
+            content.classList.remove('active');
+        });
+
+        if (currentIndex <= 9) {
+            readingContents[0].classList.add('active');
+        } else if (currentIndex >= 10 && currentIndex <= 18) {
+            readingContents[1].classList.add('active');
+        } else {
+            readingContents[2].classList.add('active');
+        }
+
+        pageIndicator.textContent = `Question ${currentIndex + 1} of ${cards.length}`;
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === cards.length - 1;
+    }
+
+    function updateScoreBoard() {
+        scoreBoard.textContent = `Score: ${score} / ${cards.length} Correct`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < cards.length - 1) {
+            currentIndex++;
+            updateExamView();
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateExamView();
+        }
+    });
+
+    document.querySelectorAll('.options-list li').forEach(option => {
+        option.addEventListener('click', function() {
+            const card = this.closest('.question-card');
+            const cardIndex = Array.from(cards).indexOf(card);
+            const options = card.querySelectorAll('.options-list li');
+            const feedback = card.querySelector('.feedback');
+            
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+
+            const isCorrect = this.classList.contains('correct-target');
+
+            if (isCorrect) {
+                this.classList.add('correct');
+                feedback.style.color = '#2ed573';
+                feedback.textContent = 'Correct.';
+                if (!answeredStatus[cardIndex]) {
+                    score++;
+                    answeredStatus[cardIndex] = true;
+                }
+            } else {
+                this.classList.add('incorrect');
+                card.querySelector('.correct-target').classList.add('correct');
+                feedback.style.color = '#ff4757';
+                feedback.textContent = 'Incorrect. The correct answer is marked in green.';
+                if (answeredStatus[cardIndex]) {
+                    score = Math.max(0, score - 1);
+                    answeredStatus[cardIndex] = false;
+                }
+            }
+            updateScoreBoard();
+        });
+    });
+
+    updateExamView();
+</script>
+
+</body>
+</html> JS ...
+</script>
+</body>
+</html>o.");
+    } else {
+        alert("Pailas, esa no es. Sigue intentando.");
+    }
+}
+</script>

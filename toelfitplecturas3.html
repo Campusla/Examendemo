@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native American Masks - TOEFL ITP</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f5f6fa; color: #333; margin: 0; padding: 20px; }
+        .exam-container { max-width: 1200px; margin: 0 auto; background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        .header-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; margin-bottom: 20px; }
+        .header-top h3 { margin: 0; color: #7f8c8d; font-size: 14px; text-transform: uppercase; }
+        .score-board { background: #e8f4f8; padding: 6px 15px; border-radius: 6px; font-weight: bold; color: #2980b9; font-size: 14px; }
+        .split-layout { display: flex; gap: 25px; }
+        .reading-pane { flex: 1; background: #fdfdfd; border: 1px solid #dcdde1; border-left: 4px solid #3498db; padding: 20px; max-height: 600px; overflow-y: auto; line-height: 1.6; }
+        .question-pane { flex: 1; background: #fff; border: 1px solid #dcdde1; border-radius: 6px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+        .question-title { font-weight: bold; font-size: 16px; color: #2c3e50; margin-bottom: 15px; }
+        .options-list { list-style-type: none; padding: 0; margin: 0 0 20px 0; }
+        .options-list li { padding: 12px 15px; margin: 10px 0; background: #f8f9fa; border: 1px solid #dcdde1; border-radius: 6px; cursor: pointer; transition: 0.2s; font-size: 15px; }
+        .options-list li:hover { background: #f1f2f6; }
+        .options-list li.correct { background: #2ecc71 !important; color: white; border-color: #27ae60; font-weight: bold; }
+        .options-list li.incorrect { background: #e74c3c !important; color: white; border-color: #c0392b; font-weight: bold; }
+        .feedback-msg { font-size: 14px; font-weight: bold; margin-bottom: 15px; }
+        .footer-nav { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #ecf0f1; padding-top: 15px; }
+        .btn { background-color: #2980b9; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+        .q-counter { font-weight: bold; color: #34495e; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="exam-container">
+    <div class="header-top">
+        <h3>QUESTIONS 40-48 (READING)</h3>
+        <div class="score-board" id="score-board">Score: 0 / 9 Correct</div>
+    </div>
+
+    <div class="split-layout">
+        <div class="reading-pane">
+            <h2>Native American Masks and Sculpture</h2>
+            <p>Native American sculpture in North America, particularly that produced by Northwest Coastal tribes, has long been recognized to be of great artistic quality. For the Northwest Coastal people, however, carvings were not purely decorative; they had a specific, usually religious or communal purpose. This is particularly evident in the mask.</p>
+            <p>Masks, carved from wood and usually painted, were sometimes embellished with feathers, shells, metal, and other materials. They were ritual objects of great power, both the wearer and the audience believed that, during ceremonies and performances, the wearer transformed into the deity or animal represented. Masks and ceremonies associated with them were probably universal among Native Americans.</p>
+            <p>The earliest surviving examples are a group of some twenty painted masks excavated in 1896 from a Key Marco, Florida, swamp where they had been since the fifteenth century. Attributed to the long-extinct Calusa tribe, these are more realistic in nature than the majority of ritual masks and include not only human features but also likenesses of deer, alligators, and wolves.</p>
+            <p>While the Calusa are long gone and one can only guess at the events their masks maintained, the Iroquois people of central New York State and Canada mask maintains its strong ties to a society that used the mask designed to cure and purify. The first Europeans to penetrate the area in the sixteenth century found the people carving such ritual face coverings, and the very old tradition continues today.</p>
+            <p>Unlike those of the Calusa, Iroquois masks are highly stylized. Carved of basswood, maple, or pine; their twisted features appear as caricatures to outsiders.</p>
+        </div>
+
+        <div class="question-pane">
+            <div id="question-content">
+                <!-- Se inyecta dinámicamente -->
+            </div>
+
+            <div class="footer-nav">
+                <button class="btn" id="prev-btn" onclick="changeQ(-1)">Back</button>
+                <div class="q-counter" id="q-counter">Question 1 of 9</div>
+                <button class="btn" id="next-btn" onclick="changeQ(1)">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { q: "40. What does the passage mainly discuss?", o: ["A) The artistic quality of Northwest Coastal tribes", "B) How masks were excavated from Florida swamps", "C) The appearance and significance of Native American masks", "D) The historical evolution of the Calusa and Iroquois tribes"], a: 2 },
+        { q: "41. The word 'embellished' is closest in meaning to...", o: ["A) replaced", "B) covered", "C) protected", "D) decorated"], a: 3 },
+        { q: "42. The word 'They' refers to...", o: ["A) masks", "B) feathers", "C) materials", "D) audiences"], a: 0 },
+        { q: "43. What can be inferred from the second paragraph about Native American masks?", o: ["A) They were common to all Native Americans.", "B) They were only used by Northwest Coastal tribes.", "C) They were strictly decorative objects.", "D) They prevented the wearer from changing."], a: 0 },
+        { q: "44. According to the third paragraph, all of the following are true of the masks excavated... EXCEPT:", o: ["A) They are the earliest surviving examples.", "B) They are attributed to the Calusa tribe.", "C) They include human and animal features.", "D) They lack the realistic details of most ritual masks."], a: 3 },
+        { q: "45. Why does the author mention in the fourth paragraph that the Calusa tribe no longer exists?", o: ["A) To show how modern tribes replaced them", "B) To explain why their masks were buried", "C) To prove that their artistic style was inferior", "D) To explain why it is difficult to know for sure how the Calusa used their masks"], a: 3 },
+        { q: "46. The word 'rites' is closest in meaning to...", o: ["A) battles", "B) designs", "C) ceremonies", "D) beliefs"], a: 2 },
+        { q: "47. According to the fourth paragraph, which of the following is true about the Iroquois people?", o: ["A) They stopped carving masks.", "B) They used masks for different purposes during different time periods.", "C) They adopted the Calusa style.", "D) They only used metal and shells."], a: 1 },
+        { q: "48. According to the fifth paragraph, why is there an unlimited number of features that could be carved on Iroquois masks?", o: ["A) They are copied from animals.", "B) They look like Calusa masks.", "C) They are painted with metallic colors.", "D) The masks are often based on images seen in dreams."], a: 3 }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+
+    function render() {
+        const q = questions[currentQ];
+        const answered = userAnswers[currentQ] !== null;
+        
+        let html = `<div>
+            <div class="question-title">${q.q}</div>
+            <ul class="options-list">`;
+        
+        q.o.forEach((opt, i) => {
+            let className = '';
+            if (answered) {
+                if (i === q.a) {
+                    className = 'correct';
+                } else if (i === userAnswers[currentQ]) {
+                    className = 'incorrect';
+                }
+            }
+            html += `<li class="${className}" onclick="selectOption(${i})">${opt}</li>`;
+        });
+        
+        html += `</ul>`;
+        
+        if (answered) {
+            if (userAnswers[currentQ] === q.a) {
+                html += `<div class="feedback-msg" style="color: #27ae60;">Correct.</div>`;
+            } else {
+                html += `<div class="feedback-msg" style="color: #c0392b;">Incorrect. The correct answer is marked in green.</div>`;
+            }
+        }
+        
+        html += `</div>`;
+        document.getElementById('question-content').innerHTML = html;
+        document.getElementById('q-counter').innerText = `Question ${currentQ + 1} of ${questions.length}`;
+        document.getElementById('score-board').innerText = `Score: ${score} / ${questions.length} Correct`;
+        
+        document.getElementById('prev-btn').disabled = currentQ === 0;
+    }
+
+    function selectOption(i) {
+        if (userAnswers[currentQ] !== null) return; // Ya respondió
+        userAnswers[currentQ] = i;
+        if (i === questions[currentQ].a) {
+            score++;
+        }
+        render();
+    }
+
+    function changeQ(dir) {
+        if (currentQ + dir >= 0 && currentQ + dir < questions.length) {
+            currentQ += dir;
+            render();
+        }
+    }
+
+    render();
+</script>
+
+</body>
+</html>
